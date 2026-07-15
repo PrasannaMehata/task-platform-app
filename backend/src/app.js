@@ -13,6 +13,9 @@ const errorHandler = require('./middleware/error');
 
 const app = express();
 
+// Disable HTTP caching/ETags for dynamic API responses
+app.disable('etag');
+
 // Secure app with Helmet headers
 app.use(helmet());
 
