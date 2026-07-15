@@ -20,7 +20,10 @@ app.use(helmet());
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:8080',
-  'http://localhost:8082'
+  'http://localhost:8082',
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:8080',
+  'http://127.0.0.1:8082'
 ];
 const allowedOriginEnv = process.env.FRONTEND_ORIGIN;
 if (allowedOriginEnv) {
@@ -30,11 +33,17 @@ if (allowedOriginEnv) {
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
-      return callback(new Error(msg), false);
+    
+    const isLocal = origin.startsWith('http://localhost') || 
+                    origin.startsWith('http://127.0.0.1') ||
+                    origin.startsWith('http://[::1]');
+                    
+    if (isLocal || allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
     }
-    return callback(null, true);
+    
+    const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+    return callback(new Error(msg), false);
   },
   optionsSuccessStatus: 200
 }));
