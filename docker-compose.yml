@@ -39,6 +39,7 @@ services:
       - MONGO_URI=mongodb://mongo:27017/task_platform
       - MONGODB_URI=mongodb://mongo:27017/task_platform
       - REDIS_URL=redis://redis:6379
+      - FRONTEND_ORIGIN=http://localhost:8080,http://localhost:8082
       - JWT_SECRET=supersecretjwtkeyforprodtesting
       - RATE_LIMIT_WINDOW_MS=900000
       - RATE_LIMIT_MAX=100
