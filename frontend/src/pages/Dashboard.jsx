@@ -21,8 +21,8 @@ export default function Dashboard() {
       }
       const response = await api.get('/api/tasks', { params });
       if (response.data && response.data.success) {
-        setTasks(response.data.tasks);
-        setTotal(response.data.total);
+        setTasks(response.data.data || []);
+        setTotal(response.data.pagination?.total || 0);
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to load tasks.');

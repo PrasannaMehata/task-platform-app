@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Serve using Nginx
-FROM nginx:1.25-alpine AS runner
+FROM nginxinc/nginx-unprivileged:1.25-alpine AS runner
 
 # Copy custom Nginx routing config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
