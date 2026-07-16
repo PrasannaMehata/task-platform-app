@@ -20,7 +20,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-8">
             <Link to="/" className="flex items-center space-x-2 group">
               <span className="font-display font-bold text-xl tracking-tight bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent group-hover:from-indigo-300 group-hover:to-violet-300 transition-all">
-                Antigravity Task Platform
+                AI Task Platform
               </span>
             </Link>
             <div className="hidden md:flex space-x-4">
